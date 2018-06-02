@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>Weight Loss Tracker</title>
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+        <script src="/assets/weightTracker.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="/assets/styles.css" type="text/css">
+    <body>
+        <h1>Weight Tracker</h1>
+        <div class="todo-table">
+            <form action="">
+                <input type="text" name="name" placeholder="Enter your name..." required>
+                <input type="text" name="currentWeight" placeholder="Current Weight" required>
+                <input type="text" name="targetWeight" placeholder="Target Weight" required>
+                <input type="date" name="targetDate"  required>
+                <button type="submit">Submit</button>
+            </form>
+            
+                <% for(let i = 0; i < userWeight.length; i++){ %>
+               <h2>Name: <%= userWeight[i].name %></h2>
+               <p>Current Weight <%= userWeight[i].currentWeight %></p>
+               <p>Target Weight <%= userWeight[i].targetWeight %></p>
+               <% let numOfDays = Math.ceil(Math.abs(new Date() - userWeight[i].targetDate) / (1000 * 3600 * 24)) %>
+               <p>You have <%= numOfDays %> days until you should reach your goal.</p>
+               <% let weightPerDay =  (userWeight[i].currentWeight - userWeight[i].targetWeight) / numOfDays%>
+               <p>You will need to loose <%= Math.round(weightPerDay * 100) / 100 %> lbs per day to reach your goal</p>
+               <% } %>
+               
+
+            
+        </div>
+    </body>
+</html>
